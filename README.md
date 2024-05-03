@@ -1,1 +1,1 @@
-# BD2_Pokemon
+# BD2_Project
