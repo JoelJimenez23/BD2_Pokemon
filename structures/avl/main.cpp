@@ -84,9 +84,13 @@ void test_age(){
         cout << p << endl;
     }
 
-    cout << "ELIMINANDO 19 y 22" << endl;
+    cout << "ELIMINANDO 19, 22, 23, 24, 25 y 27" << endl;
     avl.remove(19);
-    avl.remove(21);
+    avl.remove(22);
+    avl.remove(23);
+    avl.remove(24);
+    avl.remove(25);
+    avl.remove(27);
 
     ordenado = std::move(avl.inorder());
     cout << "\nIN ORDER DESPUES DE LA ELIMINACION" << endl;
@@ -104,7 +108,7 @@ int main(){
     cout << string(50, '-') << endl;
     f[0]();
     cout << endl <<string(50, '-') << endl;
-    /* cout << "Edades" << endl; */
-    /* f[1](); */
+    cout << "Edades" << endl;
+    f[1]();
     return EXIT_SUCCESS;
 }
