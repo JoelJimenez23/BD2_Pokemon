@@ -1,0 +1,19 @@
+constructor (data, index)
+	archivo data
+	archiv index -> si el archivo index no existe se constuye con el data
+									si existe se vuelve a cerrar
+
+
+range search (T begin, T end);
+bool add(Record record);
+bool remove(Record record);
+
+
+
+struct Record {
+	int codigo;
+	char[10] nombre;
+};
+
+
+

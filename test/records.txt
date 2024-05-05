@@ -1,0 +1,5 @@
+5,Joel,13.8,true
+4,Adrian,15.3,false
+6,Arturo,14.3,false
+7,Daniel,15,true
+8,Josue,16,false
