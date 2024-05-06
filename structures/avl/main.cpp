@@ -101,14 +101,63 @@ void test_age(){
 
 }
 
-int main(){
-    function<void ()> f[] = {test_dni, test_age};
+void test_name(){
+    function<bool(char[100], char[100])> cmp_string = [](char a[100], char b[100]) -> bool { return string(a) > string(b); };
+    function<char*(Persona &)> index_name = [=](Persona& p){return p.nombre;};
+    AVLFile<char[100], Persona, decltype(index_name), decltype(cmp_string)> avl("personas.dat","nombre",index_name, cmp_string);
+    vector<Persona> res;
+    if (!avl){
+        avl.create_index();
+        cout << "index created" << endl;
+    }
 
-    cout << "DNIs" << endl;
-    cout << string(50, '-') << endl;
-    f[0]();
+    Persona p(77866655, "Alvamau", "Garcia", "CS", 19, 123, 1.80, 70);
+    cout << "INSERTANDO UN NUEVO REGISTRO CON NOMBRE: " << p.nombre << endl;
+    avl.insert(p);
+    avl.print();
+
+    cout << "BUSQUEDA POR NOMBRE A LA PERSONA CON NOMBRE Alvamau" << endl;
+    res = std::move(avl.search("Alvamau"));
+    for (auto &p : res){
+        cout << p << endl;
+    }
+
+    cout << "BUSQUEDA POR RANGO DE NOMBRES ENTRE A Y B" << endl;
+    res = std::move(avl.range_search("A", "B"));
+    for (auto &p : res){
+        cout << p << endl;
+    }
+
+    vector<Persona> ordenado = std::move(avl.inorder());
+    cout << "\nIN ORDER TRAVERSAL USANDO NOMBRE COMO LLAVE DE ORDENACION" << endl;
+    for (auto &p : ordenado){
+        cout << p << endl;
+    }
+
+    cout << "ELIMINANDO Alvamau" << endl;
+    avl.remove("Alvamau");
+
+    ordenado = std::move(avl.inorder());
+    cout << "\nIN ORDER DESPUES DE LA ELIMINACION" << endl;
+    for (auto &p : ordenado){
+        cout << p << endl;
+    }
+    avl.print();
+}
+
+int main(){
+    function<void ()> f[] = {test_dni, test_age, test_name};
+
+    /* cout << "DNIs" << endl; */
+    /* cout << string(50, '-') << endl; */
+    /* f[0](); */
+    /* cout << endl <<string(50, '-') << endl; */
+    /* cout << "Edades" << endl; */
+    /* f[1](); */
+
     cout << endl <<string(50, '-') << endl;
-    cout << "Edades" << endl;
-    f[1]();
+    cout << "Nombres" << endl;
+    f[2]();
+
     return EXIT_SUCCESS;
 }

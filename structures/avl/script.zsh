@@ -21,6 +21,10 @@ function remove(){
         rm personas_edad.avl;
     fi
 
+    if [ -f personas_nombre.avl ]; then
+        rm personas_nombre.avl;
+    fi
+
 }
 
 remove;
