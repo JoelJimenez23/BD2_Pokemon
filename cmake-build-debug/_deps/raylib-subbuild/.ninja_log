@@ -1,0 +1,21 @@
+# ninja log v5
+1	114	7371870228126106	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-mkdir	13da376d3f3800d1
+1	114	7371870228126106	D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-mkdir	13da376d3f3800d1
+1	121858	7371874086221935	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-download	9a28606b59dd187e
+1	121858	7371874086221935	D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-download	9a28606b59dd187e
+121860	122249	0	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-update	1ccc2821d9a29f4b
+121860	122249	0	D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-update	1ccc2821d9a29f4b
+122249	122424	7371874091871941	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-patch	e52ae5aa3b0e8f68
+122249	122424	7371874091871941	D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-patch	e52ae5aa3b0e8f68
+122424	122593	7371874093581954	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-configure	3c5674cce732cc2d
+122424	122593	7371874093581954	D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-configure	3c5674cce732cc2d
+122593	122854	7371874096191940	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-build	d5a7481293284df9
+122593	122854	7371874096191940	D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-build	d5a7481293284df9
+122854	122990	7371874097561944	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-install	b1e3b1eeedefccd
+122854	122990	7371874097561944	D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-install	b1e3b1eeedefccd
+122991	123123	7371874098891960	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-test	1082261074c1efa9
+122991	123123	7371874098891960	D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-test	1082261074c1efa9
+123123	123309	7371874100741969	CMakeFiles/raylib-populate-complete	8fe16e53f52947a0
+123123	123309	7371874100741969	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-done	8fe16e53f52947a0
+123123	123309	7371874100741969	D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_deps/raylib-subbuild/CMakeFiles/raylib-populate-complete	8fe16e53f52947a0
+123123	123309	7371874100741969	D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-done	8fe16e53f52947a0
