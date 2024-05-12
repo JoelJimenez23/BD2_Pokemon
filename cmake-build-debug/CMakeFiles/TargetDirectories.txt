@@ -33,6 +33,7 @@ D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_dep
 D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_deps/raylib-build/raylib/external/glfw/CMakeFiles/install/local.dir
 D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_deps/raylib-build/raylib/external/glfw/CMakeFiles/install/strip.dir
 D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_deps/raylib-build/raylib/external/glfw/src/CMakeFiles/glfw.dir
+D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_deps/raylib-build/raylib/external/glfw/src/CMakeFiles/update_mappings.dir
 D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_deps/raylib-build/raylib/external/glfw/src/CMakeFiles/package.dir
 D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_deps/raylib-build/raylib/external/glfw/src/CMakeFiles/package_source.dir
 D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_deps/raylib-build/raylib/external/glfw/src/CMakeFiles/edit_cache.dir
@@ -41,19 +42,3 @@ D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_dep
 D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_deps/raylib-build/raylib/external/glfw/src/CMakeFiles/install.dir
 D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_deps/raylib-build/raylib/external/glfw/src/CMakeFiles/install/local.dir
 D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_deps/raylib-build/raylib/external/glfw/src/CMakeFiles/install/strip.dir
-D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_deps/raylib_cpp-build/CMakeFiles/package.dir
-D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_deps/raylib_cpp-build/CMakeFiles/package_source.dir
-D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_deps/raylib_cpp-build/CMakeFiles/edit_cache.dir
-D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_deps/raylib_cpp-build/CMakeFiles/rebuild_cache.dir
-D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_deps/raylib_cpp-build/CMakeFiles/list_install_components.dir
-D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_deps/raylib_cpp-build/CMakeFiles/install.dir
-D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_deps/raylib_cpp-build/CMakeFiles/install/local.dir
-D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_deps/raylib_cpp-build/CMakeFiles/install/strip.dir
-D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_deps/raylib_cpp-build/include/CMakeFiles/package.dir
-D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_deps/raylib_cpp-build/include/CMakeFiles/package_source.dir
-D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_deps/raylib_cpp-build/include/CMakeFiles/edit_cache.dir
-D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_deps/raylib_cpp-build/include/CMakeFiles/rebuild_cache.dir
-D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_deps/raylib_cpp-build/include/CMakeFiles/list_install_components.dir
-D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_deps/raylib_cpp-build/include/CMakeFiles/install.dir
-D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_deps/raylib_cpp-build/include/CMakeFiles/install/local.dir
-D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_deps/raylib_cpp-build/include/CMakeFiles/install/strip.dir

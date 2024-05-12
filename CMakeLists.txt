@@ -1,131 +1,69 @@
-find_program(LSB_RELEASE_EXEC lsb_release)
-execute_process(
-        COMMAND ${LSB_RELEASE_EXEC} -is
-        OUTPUT_VARIABLE LSB_RELEASE_ID_SHORT
-        OUTPUT_STRIP_TRAILING_WHITESPACE
-) # Get linux distro
+cmake_minimum_required(VERSION 3.23)
+project(BD2_Project)
 
-message(STATUS "Current distro: ${LSB_RELEASE_ID_SHORT}")
-
-cmake_minimum_required(VERSION 3.22)
-project(BD2_Project VERSION 0.1)
-
+# Generate compile_commands.json
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-if(${CMAKE_VERSION} VERSION_LESS "3.25.2")
-    message(
-            STATUS
-            "CMake version is less than 3.25.2,
-                                                                                                                                                                  upgrade to silence unnecesary warnings"
-    )
-endif()
-
-# raylib
-message(STATUS "Searching for raylib")
-if(NOT LSB_RELEASE_ID_SHORT STREQUAL "Ubuntu")
-    # Kevin fix
-    find_package(raylib QUIET)
-endif()
-if(NOT raylib_FOUND)
-    message(STATUS "raylib not found, downloading...")
+# Dependencies
+set(RAYLIB_VERSION 4.5.0)
+find_package(raylib ${RAYLIB_VERSION} QUIET) # QUIET or REQUIRED
+if (NOT raylib_FOUND) # If there's none, fetch and build raylib
     include(FetchContent)
-    if(${CMAKE_VERSION} VERSION_LESS "3.25.2")
-        fetchcontent_declare(
-                raylib
-                GIT_REPOSITORY https://github.com/raysan5/raylib.git
-                GIT_TAG 4.2.0
-        )
-    else()
-        fetchcontent_declare(
-                raylib
-                GIT_REPOSITORY https://github.com/raysan5/raylib.git
-                GIT_TAG 4.2.0
-                SYSTEM
-        )
-    endif()
-    fetchcontent_makeavailable(raylib)
-endif()
-
-# raylib-cpp is not installed as cmake package with aur
-if(NOT LSB_RELEASE_ID_SHORT STREQUAL "Arch")
-    message(STATUS "Searching for raylib_cpp")
-    # raylib_cpp
-    find_package(raylib_cpp QUIET)
-    if(NOT raylib_cpp_FOUND)
-        message(STATUS "raylib_cpp not found, downloading...")
-        include(FetchContent)
-        if(${CMAKE_VERSION} VERSION_LESS "3.25.2")
-            fetchcontent_declare(
-                    raylib_cpp
-                    GIT_REPOSITORY https://github.com/Enriquefft/raylib-cpp.git
-            )
-        else()
-            fetchcontent_declare(
-                    raylib_cpp
-                    GIT_REPOSITORY https://github.com/Enriquefft/raylib-cpp.git
-                    SYSTEM
-            )
-        endif()
-        fetchcontent_makeavailable(raylib_cpp)
-    endif()
-endif()
-
-############### MAIN ###############
-
-# This is the main part:
-
-# set(MODULES "System" "Board" "Utils")
-set(MODULES "All")
-
-set(INCLUDE_DIRS "")
-set(SOURCES "")
-
-# Recursive source and include
-# Only if Sources is empty
-if(MODULES STREQUAL "All")
-    message(STATUS "Recursively searching for all source files")
-    # file(GLOB_RECURSE INCLUDE_DIRS "src/*")
-    # Test pending
-    file(GLOB_RECURSE SOURCES "src/*.cpp")
-elseif(SOURCES STREQUAL "")
-    message(STATUS "Recursively searching for modules: ${MODULES}")
-    foreach(MODULE ${MODULES})
-        # file(GLOB_RECURSE INCLUDE_DIRS "${INCLUDE_DIRS}" "src/${MODULE}/*.h*")
-        file(GLOB_RECURSE SOURCES "${SOURCES}" "src/${MODULE}/*.cpp")
-    endforeach()
-endif()
-
-# append src/main to SOURCES
-list(APPEND SOURCES src/main.cpp)
-
-# target_include_directories(${PROJECT_NAME}  ${INCLUDE_DIRS})
-add_executable(${PROJECT_NAME} ${SOURCES})
-
-####################################
-
-if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
-    set(WARNINGS
-            -Weverything
-            -Wno-string-compare
-            -Wno-c++98-compat
-            -Wno-c++98-compat-pedantic
-            -fsanitize=address
-            -fsanitize=undefined
-            -fno-sanitize-recover=all
-            )
-    target_link_options(
-            ${PROJECT_NAME}
-            PRIVATE -fsanitize=address -fsanitize=undefined
+    FetchContent_Declare(
+            raylib
+            DOWNLOAD_EXTRACT_TIMESTAMP OFF
+            URL https://github.com/raysan5/raylib/archive/refs/tags/${RAYLIB_VERSION}.tar.gz
     )
-else()
-    set(WARNINGS -Wall -Wextra -Wshadow -pedantic)
+    FetchContent_GetProperties(raylib)
+    if (NOT raylib_POPULATED) # Have we downloaded raylib yet?
+        set(FETCHCONTENT_QUIET NO)
+        FetchContent_Populate(raylib)
+        set(BUILD_EXAMPLES OFF CACHE BOOL "" FORCE) # don't build the supplied examples
+        add_subdirectory(${raylib_SOURCE_DIR} ${raylib_BINARY_DIR})
+    endif()
 endif()
 
-target_compile_options(${PROJECT_NAME} PRIVATE ${WARNINGS} -g)
+# Our Project
 
-set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 20)
-if(LSB_RELEASE_ID_SHORT STREQUAL "Arch")
-    target_link_libraries(${PROJECT_NAME} PRIVATE raylib)
-else()
-    target_link_libraries(${PROJECT_NAME} PRIVATE raylib raylib_cpp)
+add_executable(${PROJECT_NAME}
+        src/main.cpp
+        src/main.cpp
+        src/Util/GUIManager.hpp
+        src/Util/SceneManager.hpp
+        src/Scenes/Scenes.hpp
+        src/GUI/Button.hpp
+        src/Entity/Player.cpp
+        src/Entity/header/Player.hpp
+        src/Entity/BasicBehaviour.hpp
+        src/Scenes/Headers/SceneMainMenu.hpp
+        src/Scenes/Headers/SimpleScene.hpp
+
+        src/Scenes/Headers/SceneCredits.hpp
+
+        src/Scenes/Headers/SceneVisualize.hpp
+        src/Scenes/Headers/SceneStructuresVisualize.cpp
+        src/Scenes/Headers/VAvl.hpp
+        src/Scenes/Headers/VBTree.hpp
+        src/Scenes/Headers/VExtendible.hpp
+
+        src/Scenes/Headers/SceneDocumen.hpp
+        src/Scenes/Headers/SceneStructuresDocumen.cpp
+        src/Scenes/Headers/DAvl.hpp
+        src/Scenes/Headers/DBTree.hpp
+        src/Scenes/Headers/DExtendible.hpp
+        )
+#set(raylib_VERBOSE 1)
+target_link_libraries(${PROJECT_NAME} raylib)
+
+# Web Configurations
+if (${PLATFORM} STREQUAL "Web")
+    # Tell Emscripten to build an example.html file.
+    set_target_properties(${PROJECT_NAME} PROPERTIES SUFFIX ".html")
+endif()
+
+# Checks if OSX and links appropriate frameworks (Only required on MacOS)
+if (APPLE)
+    target_link_libraries(${PROJECT_NAME} "-framework IOKit")
+    target_link_libraries(${PROJECT_NAME} "-framework Cocoa")
+    target_link_libraries(${PROJECT_NAME} "-framework OpenGL")
 endif()

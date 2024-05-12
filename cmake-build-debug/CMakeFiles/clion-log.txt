@@ -1,9 +1,44 @@
 "C:\Users\leonc\AppData\Local\JetBrains\CLion 2022.2\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=C:/Users/leonc/AppData/Local/JetBrains/CLion 2022.2/bin/ninja/win/ninja.exe" -G Ninja -S "D:\Documentos\Rodrigo\Utec\ciclo 2024-1\BD II\BD2_Project" -B "D:\Documentos\Rodrigo\Utec\ciclo 2024-1\BD II\BD2_Project\cmake-build-debug"
--- Current distro: 
--- CMake version is less than 3.25.2,
-                                                                                                                                                                  upgrade to silence unnecesary warnings
--- Searching for raylib
--- raylib not found, downloading...
+-- The C compiler identification is GNU 11.2.0
+-- The CXX compiler identification is GNU 11.2.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: C:/Users/leonc/AppData/Local/JetBrains/CLion 2022.2/bin/mingw/bin/gcc.exe - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/Users/leonc/AppData/Local/JetBrains/CLion 2022.2/bin/mingw/bin/g++.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Populating raylib
+-- Configuring done
+-- Generating done
+-- Build files have been written to: D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_deps/raylib-subbuild
+[0/7] Performing download step (download, verify and extract) for 'raylib-populate'
+-- File already exists but no hash specified (use URL_HASH):
+  file='D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_deps/raylib-subbuild/raylib-populate-prefix/src/4.5.0.tar.gz'
+Old file will be removed and new file downloaded from URL.
+-- Downloading...
+   dst='D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_deps/raylib-subbuild/raylib-populate-prefix/src/4.5.0.tar.gz'
+   timeout='none'
+   inactivity timeout='none'
+-- Using src='https://github.com/raysan5/raylib/archive/refs/tags/4.5.0.tar.gz'
+-- Downloading... done
+-- extracting...
+     src='D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_deps/raylib-subbuild/raylib-populate-prefix/src/4.5.0.tar.gz'
+     dst='D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_deps/raylib-src'
+-- extracting... [tar xfz]
+-- extracting... [analysis]
+-- extracting... [rename]
+-- extracting... [clean up]
+-- extracting... done
+[1/7] No patch step for 'raylib-populate'
+[3/7] No configure step for 'raylib-populate'
+[4/7] No build step for 'raylib-populate'
+[5/7] No install step for 'raylib-populate'
+[6/7] No test step for 'raylib-populate'
+[7/7] Completed 'raylib-populate'
 -- Performing Test COMPILER_HAS_THOSE_TOGGLES
 -- Performing Test COMPILER_HAS_THOSE_TOGGLES - Success
 -- Testing if -Werror=pointer-arith can be used -- compiles
@@ -15,7 +50,7 @@
 -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
 -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
 -- Found Threads: TRUE  
--- Using Win32 for window creation
+-- Including Win32 support
 -- Looking for dinput.h
 -- Looking for dinput.h - found
 -- Looking for xinput.h
@@ -26,9 +61,6 @@
 -- Compiling with the flags:
 --   PLATFORM=PLATFORM_DESKTOP
 --   GRAPHICS=GRAPHICS_API_OPENGL_33
--- Searching for raylib_cpp
--- raylib_cpp not found, downloading...
--- Recursively searching for all source files
 -- Configuring done
 -- Generating done
 -- Build files have been written to: D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug

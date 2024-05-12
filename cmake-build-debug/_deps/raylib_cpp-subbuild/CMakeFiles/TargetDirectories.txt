@@ -1,3 +1,0 @@
-D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_deps/raylib_cpp-subbuild/CMakeFiles/raylib_cpp-populate.dir
-D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_deps/raylib_cpp-subbuild/CMakeFiles/edit_cache.dir
-D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_Project/cmake-build-debug/_deps/raylib_cpp-subbuild/CMakeFiles/rebuild_cache.dir

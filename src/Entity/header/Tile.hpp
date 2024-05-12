@@ -93,6 +93,7 @@ public:
 
     int isColliding(Player *player)
     {
+
         Rectangle playerBox = {player->getX(), player->getY(), 30, 30};
         Rectangle TileBox = {posX, posY, 40, 40};
 
