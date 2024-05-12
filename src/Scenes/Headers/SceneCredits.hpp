@@ -10,20 +10,25 @@ public:
         mainMenuMusic = LoadMusicStream("rescources/sounds/music/Underclocked.mp3");
         PlayMusicStream(mainMenuMusic);
 
-        Rod = new Button("RODRIGO", GetScreenWidth() / 2 - 150, 125);
-        Rog = new Button("ROGER", GetScreenWidth() / 2 - 150, GetScreenHeight() - 225);
-        Ang = new Button("ANGELLO", GetScreenWidth() / 2 - 150, GetScreenHeight() - 350);
-        Art = new Button("ARTURO", GetScreenWidth() / 2 - 150, GetScreenHeight() - 475);
-        Joe = new Button("JOEL", GetScreenWidth() / 2 - 150, GetScreenHeight() - 100);
+        Rod = new Button("RODRIGO", GetScreenWidth() / 2 - 150, GetScreenHeight() - 575);
+        Rog = new Button("ROGER", GetScreenWidth() / 2 - 150, GetScreenHeight() - 475);
+        Ang = new Button("ANGELLO", GetScreenWidth() / 2 - 150, GetScreenHeight() - 375);
+        Art = new Button("ARTURO", GetScreenWidth() / 2 - 150, GetScreenHeight() - 275);
+        Joe = new Button("JOEL", GetScreenWidth() / 2 - 150, GetScreenHeight() - 175);
+
+        ret = new Button("return", GetScreenWidth() - 300, GetScreenHeight() - 100);
     }
 
     static void nothing(){
 
     }
 
+    static void retr();
+
     void Render() override
     {
         UpdateMusicStream(mainMenuMusic);
+        GUIManager::WriteText("Project's Members", 0, 40, 45, 1);
 
         DrawText("By Rodrigo", 2, GetScreenHeight() - 22, 20, WHITE);
 
@@ -34,8 +39,10 @@ public:
         Ang->Render(nothing);
         Art->Render(nothing);
         Joe->Render(nothing);
+
+        ret->Render(retr);
     };
 private:
     Music mainMenuMusic;
-    Button *Rod, *Ang, *Rog, *Joe, *Art;
+    Button *Rod, *Ang, *Rog, *Joe, *Art, *ret;
 };

@@ -19,10 +19,10 @@ class SceneDocumen : public Scene
 public:
     SceneDocumen()
     {
-        Return = new Button("Return", GetScreenWidth() / 2 - 150, GetScreenHeight() - 100);
-        ExtendibleHashing = new Button("Extendible Hashing", GetScreenWidth() / 2 - 150, GetScreenHeight() - 225);
-        BTREE = new Button("BTree", GetScreenWidth() / 2 - 150, GetScreenHeight() - 350);
-        AVL = new Button("AVL", GetScreenWidth() / 2 - 150, GetScreenHeight() - 475);
+        AVL = new Button("AVL", GetScreenWidth() / 2 - 150, GetScreenHeight() - 575);
+        BTREE = new Button("BTree", GetScreenWidth() / 2 - 150, GetScreenHeight() - 450);
+        ExtendibleHashing = new Button("Extendible Hashing", GetScreenWidth() / 2 - 150, GetScreenHeight() - 325);
+        Return = new Button("Return", GetScreenWidth() / 2 - 150, GetScreenHeight() - 200);
 
         mainMenuMusic = LoadMusicStream("rescources/sounds/music/NightShade.mp3");
         PlayMusicStream(mainMenuMusic);

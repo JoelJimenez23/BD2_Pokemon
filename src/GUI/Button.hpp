@@ -55,6 +55,24 @@ public:
             }
         }
         hovered = isHovered(GetMouseX(), GetMouseY());
+
+        if (hovered && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+        {
+            PlaySound(ClickFX_asSound);
+            _setup(); // Ejecuta la función asociada al botón
+            pressed = true; // Marca el botón como presionado
+        }
+    }
+
+    void ResetPressedState()
+    {
+        pressed = false;
+    }
+
+    // Método para verificar si el botón ha sido presionado
+    bool IsPressed() const
+    {
+        return pressed;
     }
 private:
     Sound SelectFX_AsSound, ClickFX_asSound;
@@ -62,6 +80,7 @@ private:
     int X, Y;
     char* name;
     void onclick(void (*onclick)()) {onclick();};
+    bool pressed = false;
 
     /// @brief Function to find
     /// @param posX position X of the cursor

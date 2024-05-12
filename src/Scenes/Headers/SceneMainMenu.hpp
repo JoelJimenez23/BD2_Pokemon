@@ -23,10 +23,10 @@ class SceneMainMenu : public Scene
 public:
     SceneMainMenu()
     {
-        Quit = new Button("Quit", GetScreenWidth() / 2 - 150, GetScreenHeight() - 100);
-        Credit = new Button("Credits", GetScreenWidth() / 2 - 150, GetScreenHeight() - 225);
-        Documentation = new Button("Documentation", GetScreenWidth() / 2 - 150, GetScreenHeight() - 350);
-        Structures = new Button("Structures", GetScreenWidth() / 2 - 150, GetScreenHeight() - 475);
+        Structures = new Button("Structures", GetScreenWidth() / 2 - 150, GetScreenHeight() - 575);
+        Documentation = new Button("Documentation", GetScreenWidth() / 2 - 150, GetScreenHeight() - 450);
+        Credit = new Button("Credits", GetScreenWidth() / 2 - 150, GetScreenHeight() - 325);
+        Quit = new Button("Quit", GetScreenWidth() / 2 - 150, GetScreenHeight() - 200);
 
         mainMenuMusic = LoadMusicStream("rescources/sounds/music/NightShade.mp3");
         PlayMusicStream(mainMenuMusic);
@@ -62,7 +62,7 @@ public:
 
     void Render() override{
         UpdateMusicStream(mainMenuMusic);
-        GUIManager::WriteText("Raylib test", 0, 40, 45, 1);
+        GUIManager::WriteText("BD2 Project", 0, 40, 45, 1);
 
         DrawText("By Rodrigo", 2, GetScreenHeight() - 22, 20, WHITE);
 

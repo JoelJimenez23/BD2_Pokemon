@@ -45,37 +45,60 @@ public:
 
     }
 
-    static void retur(){
+    static void retur();
 
-    }
+    static void nothing(){}
 
     void Render() override
     {
         UpdateMusicStream(mainMenuMusic);
 
-        DrawText("By Rodrigo", 2, GetScreenHeight() - 22, 20, WHITE);
-
-
-        insert->Render(ins);
-        remove->Render(rem);
-        find->Render(fi);
-        range->Render(ran);
-        ret->Render(retur);
-
         int key = GetKeyPressed();
-        int num = 0;
-        while (!IsKeyPressed(KEY_ENTER)){
+        char text[256] = "";
+        while (key != KEY_ENTER && !GUIManager::ShouldClose){
+            BeginDrawing();
+            DrawText("By Rodrigo", 2, GetScreenHeight() - 22, 20, WHITE);
+            ClearBackground(DARKGRAY);
+            if(WindowShouldClose()) GUIManager::ShouldClose = true;
 
-            if (isdigit(key)) {
-                num += key;
-                num *= 10;
-            }
+            int len = strlen(text);
+            text[len] = (char)key;
+            text[len + 1] = '\0';
+
+            insert->Render(nothing);
+            remove->Render(nothing);
+            find->Render(nothing);
+            range->Render(nothing);
+            ret->Render(nothing);
+
+            DrawText("Enter text:", 0, 0, 50, BLACK);
+            DrawRectangleLines(300, 2, 200, 40, BLACK);
+            DrawText(text, 310, 0, 50, BLACK);
+            key = GetKeyPressed();
+            EndDrawing();
         }
+        string x = text; //texto a mandar al parser;
+        while (!GUIManager::ShouldClose){
+            BeginDrawing();
+            DrawText("By Rodrigo", 2, GetScreenHeight() - 22, 20, WHITE);
+            ClearBackground(DARKGRAY);
+            if(WindowShouldClose()) GUIManager::ShouldClose = true;
 
-        DrawText("Enter text:", 0, 0, 50, BLACK);
-        DrawRectangleLines(300, 2, 200, 40, BLACK);
-        DrawText(to_string(num).c_str(), 310, 0, 50, BLACK);
-
+            insert->Render(ins);
+            remove->Render(rem);
+            find->Render(fi);
+            range->Render(ran);
+            ret->Render(retur);
+            if (insert->IsPressed() || remove->IsPressed() || find->IsPressed() || range->IsPressed() ||
+                ret->IsPressed()){
+                break;
+            }
+            text[0] = '\0';
+            DrawText("Enter text:", 0, 0, 50, BLACK);
+            DrawRectangleLines(300, 2, 200, 40, BLACK);
+            DrawText(text, 310, 0, 50, BLACK);
+            EndDrawing();
+        }
     };
 private:
     Music mainMenuMusic;
