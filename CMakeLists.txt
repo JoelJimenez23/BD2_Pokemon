@@ -24,14 +24,8 @@ if (NOT raylib_FOUND) # If there's none, fetch and build raylib
 endif()
 
 # Our Project
-
 add_executable(${PROJECT_NAME}
         src/main.cpp
-        src/main.cpp
-        src/Util/GUIManager.hpp
-        src/Util/SceneManager.hpp
-        src/Scenes/Scenes.hpp
-        src/GUI/Button.hpp
         src/Entity/Player.cpp
         src/Entity/header/Player.hpp
         src/Entity/BasicBehaviour.hpp
@@ -55,9 +49,17 @@ add_executable(${PROJECT_NAME}
 #set(raylib_VERBOSE 1)
 target_link_libraries(${PROJECT_NAME} raylib)
 
+target_include_directories(${PROJECT_NAME} PRIVATE
+        ${PROJECT_SOURCE_DIR}/src
+        ${PROJECT_SOURCE_DIR}/src/Entity
+        ${PROJECT_SOURCE_DIR}/src/Util
+        ${PROJECT_SOURCE_DIR}/src/GUI
+        ${PROJECT_SOURCE_DIR}/src/Scenes
+)
+
+
 # Web Configurations
 if (${PLATFORM} STREQUAL "Web")
-    # Tell Emscripten to build an example.html file.
     set_target_properties(${PROJECT_NAME} PROPERTIES SUFFIX ".html")
 endif()
 

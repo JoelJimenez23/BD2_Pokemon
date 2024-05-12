@@ -7,13 +7,13 @@
 #include "SimpleScene.hpp"
 #include "../Scenes.hpp"
 
-#include "../../Entity/header/Player.hpp"
-#include "../../Entity/header/Tile.hpp"
+#include "Entity/header/Player.hpp"
+#include "Entity/header/Tile.hpp"
 
-#include "../../Util/SceneManager.hpp"
-#include "../../Util/GUIManager.hpp"
-#include "../../GUI/Button.hpp"
-#include "../../GUI/TextZone.hpp"
+#include "Util/SceneManager.hpp"
+#include "Util/GUIManager.hpp"
+#include "GUI/Button.hpp"
+#include "GUI/TextZone.hpp"
 
 #include "vector"
 

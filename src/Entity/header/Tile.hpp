@@ -5,7 +5,7 @@
 using namespace std;
 
 #include "Player.hpp"
-#include "../../GUI/TextZone.hpp"
+#include "GUI/TextZone.hpp"
 
 class Tile
 {
