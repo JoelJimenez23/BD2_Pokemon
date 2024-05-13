@@ -4,7 +4,6 @@
 #include "node.hpp"
 #include <cstdlib>
 #include <functional>
-#include <queue>
 
 #define SEEK(file, pos) \
     file.seekg(pos); \

@@ -51,7 +51,7 @@ AppRecord parseUsingSscanf(const std::vector<std::string>& tokens) {
     return record;
 }
 
-void write_dat_from_csv(const std::string& f = "AppleStore.csv") {
+void write_dat_from_csv(const std::string& f = "data/AppleStore.csv") {
     std::ifstream file(f);
     if (!file) {
         std::cerr << "Failed to open " << f << std::endl;
@@ -80,7 +80,7 @@ void write_dat_from_csv(const std::string& f = "AppleStore.csv") {
         //std::cout << r.id << " " << r.app_name << " " << r.size_bytes << " " << r.price << " " << r.rating_count_tot << " " << r.user_rating << " " << r.cont_rating << " " << r.prime_genre << std::endl;
     }
 
-    std::ofstream out_file("AppleStore.dat", std::ios::binary);
+    std::ofstream out_file("data/AppleStore.dat", std::ios::binary);
     if (!out_file) {
         std::cerr << "Failed to open AppleStore.dat for writing" << std::endl;
         return;

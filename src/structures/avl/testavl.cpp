@@ -102,7 +102,7 @@ void test_age(){
 }
 
 void test_name(){
-    function<bool(char[100], char[100])> cmp_string = [](char a[100], char b[100]) -> bool { return string(a) > string(b); };
+    function<bool(char[100], char[100])> cmp_string = [](char a[100], char b[100]) -> bool { return strcmp(a,b) > 0; };
     function<char*(Persona &)> index_name = [=](Persona& p){return p.nombre;};
     AVLFile<char[100], Persona, decltype(index_name), decltype(cmp_string)> avl("personas.dat","nombre",index_name, cmp_string);
     vector<Persona> res;
@@ -148,12 +148,12 @@ void test_name(){
 int main(){
     function<void ()> f[] = {test_dni, test_age, test_name};
 
-    /* cout << "DNIs" << endl; */
-    /* cout << string(50, '-') << endl; */
-    /* f[0](); */
-    /* cout << endl <<string(50, '-') << endl; */
-    /* cout << "Edades" << endl; */
-    /* f[1](); */
+    cout << "DNIs" << endl;
+    cout << string(50, '-') << endl;
+    f[0]();
+    cout << endl <<string(50, '-') << endl;
+    cout << "Edades" << endl;
+    f[1]();
 
     cout << endl <<string(50, '-') << endl;
     cout << "Nombres" << endl;
