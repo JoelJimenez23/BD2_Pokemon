@@ -53,7 +53,7 @@ public:
 
     void Render() override{
         UpdateMusicStream(mainMenuMusic);
-        GUIManager::WriteText("Raylib test", 0, 40, 45, 1);
+        GUIManager::WriteText("Documentation", 0, 40, 45, 1);
 
         DrawText("By Rodrigo", 2, GetScreenHeight() - 22, 20, WHITE);
 

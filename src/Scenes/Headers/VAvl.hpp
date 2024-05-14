@@ -30,19 +30,27 @@ public:
     }
 
     static void ins(){
-
+        VAVL* Walk;
+        Walk = new VAVL();
+        SceneManager::LoadScene(Walk);
     }
 
     static void rem(){
-
+        VAVL* Walk;
+        Walk = new VAVL();
+        SceneManager::LoadScene(Walk);
     }
 
     static void fi(){
-
+        VAVL* Walk;
+        Walk = new VAVL();
+        SceneManager::LoadScene(Walk);
     }
 
     static void ran(){
-
+        VAVL* Walk;
+        Walk = new VAVL();
+        SceneManager::LoadScene(Walk);
     }
 
     static void retur();
