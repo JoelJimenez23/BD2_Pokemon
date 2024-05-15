@@ -100,22 +100,17 @@ struct Proxy {
     static vector<std::string> parser;
     static Query query; // query = parser?
 
-    Proxy(){
-        parser = {"SELECT * FROM apple_store WHERE prime_genre = 'Catalogs';"};
-    };
-
-    void SetQuery(){
-        
-    }
+    Proxy() = default;
 
     ~Proxy() = default;
 
     static void execute_query() {
-        cout <<"CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC\n";
-        if (query.query_type == "SELECT") {
-            cout <<"BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB\n";
-            if (query.token2 == "="){
-                cout <<"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\n";
+        parser = {"SELECT * FROM apple_store WHERE prime_genre = 'Catalogs';"};
+        Query p;
+        cout << p.query_type << endl;
+        cout << parser.size() << endl;
+        if (p.query_type == "SELECT") {
+            if (p.token2 == "="){
                 SELECT_ATTRIBUTE(id, unsigned int);
                 SELECT_ATTRIBUTE(size_bytes, unsigned int);
                 //SELECT_ATTRIBUTE(price, float);
@@ -123,7 +118,7 @@ struct Proxy {
                 SELECT_ATTRIBUTE_CHAR(app_name, 256);
                 SELECT_ATTRIBUTE_CHAR(cont_rating, 4);
                 SELECT_ATTRIBUTE_CHAR(prime_genre, 18);
-            }else if (query.token2 == "BETWEEN"){
+            }else if (p.token2 == "BETWEEN"){
                 SELECT_RANGE(id, unsigned int);
                 SELECT_RANGE(size_bytes, unsigned int);
                 //SELECT_RANGE(price, float);

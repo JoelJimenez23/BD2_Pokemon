@@ -2,6 +2,8 @@
 using namespace std;
 
 vector<AppRecord> Proxy::query_records;
+Query Proxy::query;
+vector<string> Proxy::parser;
 string Query::query_type;
 string Query::token1;
 string Query::table_name;
