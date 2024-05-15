@@ -20,7 +20,7 @@ template<typename KeyType
         ,typename RecordType
         ,typename Index = std::function<KeyType(RecordType &)>
         ,typename Greater = std::greater<KeyType>
-        >
+>
 class AVLFile{
 private:
     long root;
@@ -339,6 +339,9 @@ private:
     }
 
 public:
+
+    AVLFile() = default;
+
     explicit AVLFile(std::string heap_file_name
             , std::string attribute
             , Index i = Index()

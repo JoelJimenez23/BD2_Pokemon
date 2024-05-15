@@ -3,11 +3,10 @@
 
 #include "apple_store_record.hpp"
 #include "../structures/avl/avl.hpp"
-#include "../structures/avl/node.hpp"
-#include "../structures/avl/utils.hpp"
 #include <charconv>
+using namespace std;
 
-const std::string APP_STORE_FILE = "data/AppleStore.dat";
+const std::string APP_STORE_FILE = "D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/BD2_CLON/src/proxy/data/AppleStore.dat";
 
 #define SELECT_ATTRIBUTE(attribute, type) \
     if (query.where_attribute == #attribute) { \
@@ -57,56 +56,83 @@ const std::string APP_STORE_FILE = "data/AppleStore.dat";
 
 
 struct Query{
-    std::string query_type="SELECT";
-    std::string token1="FROM";
-    std::string table_name="apple_store";
-    std::string operation_type="WHERE";
-    // std::string where_attribute="id"; // opción 2
-    std::string where_attribute="prime_genre"; // opción 1
-    std::string token2="="; // con =
-    // std::string where_value="284882215";  // opción 2
-    std::string where_value="Catalogs"; // opción 1
+    static string query_type;
+    static string token1;
+    static string table_name;
+    static string operation_type;
+    static string where_attribute; // opción 1
+    static string token2; // con =
+    // string where_value="284882215";  // opción 2
+    static string where_value; // opción 1
 
     // PARA RANGE SEARCH
+    // std::string where_attribute="id"; // opción 2
     // std::string init="284882215"; // opción 1
     //std::string where_attribute = "app_name";
-    std::string init="Fac";
+    static string init;
     //std::string token2 = "BETWEEN"; // con BETWEEN
     // std::string ending="284993459"; // opción 1
-    std::string ending="Fad";
+    static string ending;
+
+    Query(){
+        query_type="SELECT";
+        token1="FROM";
+        table_name="apple_store";
+        operation_type="WHERE";
+        where_attribute="prime_genre"; // opción 1
+        token2="="; // con =
+        // std::string where_value="284882215";  // opción 2
+        where_value="Catalogs"; // opción 1
+
+        // PARA RANGE SEARCH
+        // std::string where_attribute="id"; // opción 2
+        // std::string init="284882215"; // opción 1
+        //std::string where_attribute = "app_name";
+        init="Fac";
+        //std::string token2 = "BETWEEN"; // con BETWEEN
+        // std::string ending="284993459"; // opción 1
+        ending="Fad";
+    }
 };
 
-class Proxy {
-private:
-    std::vector<AppRecord> query_records;
-    std::vector<std::string> parser{"SELECT * FROM apple_store WHERE prime_genre = 'Catalogs';"};
-    Query query; // query = parser?
+struct Proxy {
+    static std::vector<AppRecord> query_records;
+    static vector<std::string> parser;
+    static Query query; // query = parser?
 
-    
-public:
-    Proxy() = default;
+    Proxy(){
+        parser = {"SELECT * FROM apple_store WHERE prime_genre = 'Catalogs';"};
+    };
+
+    void SetQuery(){
+        
+    }
+
     ~Proxy() = default;
 
-    void execute_query() {
+    static void execute_query() {
+        cout <<"CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC\n";
         if (query.query_type == "SELECT") {
+            cout <<"BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB\n";
             if (query.token2 == "="){
+                cout <<"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\n";
                 SELECT_ATTRIBUTE(id, unsigned int);
                 SELECT_ATTRIBUTE(size_bytes, unsigned int);
-                SELECT_ATTRIBUTE(price, float);
+                //SELECT_ATTRIBUTE(price, float);
                 SELECT_ATTRIBUTE(rating_count_tot, unsigned int);
                 SELECT_ATTRIBUTE_CHAR(app_name, 256);
                 SELECT_ATTRIBUTE_CHAR(cont_rating, 4);
                 SELECT_ATTRIBUTE_CHAR(prime_genre, 18);
-            }else if (query.token2 == "BETWEEN"){ 
+            }else if (query.token2 == "BETWEEN"){
                 SELECT_RANGE(id, unsigned int);
                 SELECT_RANGE(size_bytes, unsigned int);
-                SELECT_RANGE(price, float);
+                //SELECT_RANGE(price, float);
                 SELECT_RANGE(rating_count_tot, unsigned int);
                 SELECT_RANGE_CHAR(app_name, 256);
                 SELECT_RANGE_CHAR(cont_rating, 4);
                 SELECT_RANGE_CHAR(prime_genre, 18);
             }
-        } 
+        }
         for (auto &record : query_records) {
             std::cout << record.to_string() << std::endl;
         }

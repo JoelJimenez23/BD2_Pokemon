@@ -14,6 +14,10 @@
 #include "GUI/Button.hpp"
 #include "GUI/TextZone.hpp"
 
+#include "structures/avl/avl.hpp"
+#include "structures/bplus/bplus.hpp"
+//extendible
+
 class Visualize : public Scene
 {
 public:

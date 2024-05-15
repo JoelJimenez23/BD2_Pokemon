@@ -12,11 +12,14 @@
 
 #include "cstdlib"
 
-//#include "../structures/avl/avl.hpp"
+#include "../proxy/proxy.hpp"
+
 
 class VAVL : public Scene
 {
 public:
+    static Proxy AVL;
+
     VAVL()
     {
         mainMenuMusic = LoadMusicStream("rescources/sounds/music/Underclocked.mp3");
@@ -44,6 +47,8 @@ public:
     static void fi(){
         VAVL* Walk;
         Walk = new VAVL();
+        AVL.execute_query();
+        cout << "XDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD\n";
         SceneManager::LoadScene(Walk);
     }
 

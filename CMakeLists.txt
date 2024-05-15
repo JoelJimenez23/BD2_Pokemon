@@ -3,6 +3,8 @@ project(BD2_Project)
 
 # Generate compile_commands.json
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Dependencies
 set(RAYLIB_VERSION 4.5.0)
@@ -45,6 +47,22 @@ add_executable(${PROJECT_NAME}
         src/Scenes/Headers/DAvl.hpp
         src/Scenes/Headers/DBTree.hpp
         src/Scenes/Headers/DExtendible.hpp
+
+        src/proxy/proxy.hpp
+        src/proxy/apple_store_record.hpp
+        src/proxy/proxy.cpp
+
+        src/structures/avl/avl.hpp
+        src/structures/avl/node.hpp
+        src/structures/avl/utils.hpp
+        )
+add_executable(test1 src/proxy/write_dat.cpp src/proxy/apple_store_record.hpp)
+add_executable(test2 src/proxy/main.cpp
+        src/proxy/proxy.hpp
+        src/proxy/apple_store_record.hpp
+        src/structures/avl/avl.hpp
+        src/structures/avl/utils.hpp
+        src/structures/avl/node.hpp
         )
 #set(raylib_VERBOSE 1)
 target_link_libraries(${PROJECT_NAME} raylib)
@@ -55,6 +73,9 @@ target_include_directories(${PROJECT_NAME} PRIVATE
         ${PROJECT_SOURCE_DIR}/src/Util
         ${PROJECT_SOURCE_DIR}/src/GUI
         ${PROJECT_SOURCE_DIR}/src/Scenes
+        ${PROJECT_SOURCE_DIR}/src/structures
+
+        ${PROJECT_SOURCE_DIR}/src/proxy
 )
 
 
