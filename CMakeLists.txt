@@ -28,33 +28,32 @@ endif()
 # Our Project
 add_executable(${PROJECT_NAME}
         src/main.cpp
-        src/Entity/Player.cpp
-        src/Entity/header/Player.hpp
-        src/Entity/BasicBehaviour.hpp
-        src/Scenes/Headers/SceneMainMenu.hpp
-        src/Scenes/Headers/SimpleScene.hpp
-
+        src/Scenes/Scenes.hpp
+        src/Scenes/Headers/DAvl.hpp
+        src/Scenes/Headers/DBTree.hpp
+        src/Scenes/Headers/DExtendible.hpp
         src/Scenes/Headers/SceneCredits.hpp
-
-        src/Scenes/Headers/SceneVisualize.hpp
+        src/Scenes/Headers/SceneDocumen.hpp
+        src/Scenes/Headers/SceneMainMenu.hpp
+        src/Scenes/Headers/SceneStructuresDocumen.cpp
         src/Scenes/Headers/SceneStructuresVisualize.cpp
+        src/Scenes/Headers/SceneVisualize.hpp
         src/Scenes/Headers/VAvl.hpp
         src/Scenes/Headers/VBTree.hpp
         src/Scenes/Headers/VExtendible.hpp
 
-        src/Scenes/Headers/SceneDocumen.hpp
-        src/Scenes/Headers/SceneStructuresDocumen.cpp
-        src/Scenes/Headers/DAvl.hpp
-        src/Scenes/Headers/DBTree.hpp
-        src/Scenes/Headers/DExtendible.hpp
+        src/GUI/Button.hpp
 
-        src/proxy/proxy.hpp
         src/proxy/apple_store_record.hpp
+        src/proxy/proxy.hpp
         src/proxy/proxy.cpp
 
         src/structures/avl/avl.hpp
         src/structures/avl/node.hpp
         src/structures/avl/utils.hpp
+
+        src/Util/GUIManager.hpp
+        src/Util/SceneManager.hpp
         )
 add_executable(test1 src/proxy/write_dat.cpp src/proxy/apple_store_record.hpp)
 add_executable(test2 src/proxy/main.cpp
@@ -69,13 +68,11 @@ target_link_libraries(${PROJECT_NAME} raylib)
 
 target_include_directories(${PROJECT_NAME} PRIVATE
         ${PROJECT_SOURCE_DIR}/src
-        ${PROJECT_SOURCE_DIR}/src/Entity
-        ${PROJECT_SOURCE_DIR}/src/Util
-        ${PROJECT_SOURCE_DIR}/src/GUI
+        ${PROJECT_SOURCE_DIR}/src/
+        ${PROJECT_SOURCE_DIR}/src/proxy
         ${PROJECT_SOURCE_DIR}/src/Scenes
         ${PROJECT_SOURCE_DIR}/src/structures
-
-        ${PROJECT_SOURCE_DIR}/src/proxy
+        ${PROJECT_SOURCE_DIR}/src/Util
 )
 
 

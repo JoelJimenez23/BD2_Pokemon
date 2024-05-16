@@ -104,7 +104,7 @@ struct Proxy {
 
     ~Proxy() = default;
 
-    static void execute_query() {
+    static vector<AppRecord> execute_query() {
         parser = {"SELECT * FROM apple_store WHERE prime_genre = 'Catalogs';"};
         Query p;
         cout << p.query_type << endl;
@@ -128,9 +128,7 @@ struct Proxy {
                 SELECT_RANGE_CHAR(prime_genre, 18);
             }
         }
-        for (auto &record : query_records) {
-            std::cout << record.to_string() << std::endl;
-        }
+        return query_records;
     }
 };
 

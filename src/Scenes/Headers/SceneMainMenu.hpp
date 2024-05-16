@@ -10,13 +10,9 @@
 
 #include "Scenes.hpp"
 
-#include "Entity/header/Player.hpp"
-#include "Entity/header/Tile.hpp"
-
 #include "Util/SceneManager.hpp"
 #include "Util/GUIManager.hpp"
 #include "GUI/Button.hpp"
-#include "GUI/TextZone.hpp"
 
 class SceneMainMenu : public Scene
 {
@@ -28,8 +24,8 @@ public:
         Credit = new Button("Credits", GetScreenWidth() / 2 - 150, GetScreenHeight() - 325);
         Quit = new Button("Quit", GetScreenWidth() / 2 - 150, GetScreenHeight() - 200);
 
-        mainMenuMusic = LoadMusicStream("rescources/sounds/music/NightShade.mp3");
-        PlayMusicStream(mainMenuMusic);
+        //mainMenuMusic = LoadMusicStream("rescources/sounds/music/NightShade.mp3");
+        //PlayMusicStream(mainMenuMusic);
     }
 
     static void ButtonQuit()
@@ -61,7 +57,7 @@ public:
     }
 
     void Render() override{
-        UpdateMusicStream(mainMenuMusic);
+        //UpdateMusicStream(mainMenuMusic);
         GUIManager::WriteText("BD2 Project", 0, 40, 45, 1);
 
         DrawText("By Rodrigo", 2, GetScreenHeight() - 22, 20, WHITE);
@@ -74,6 +70,6 @@ public:
         Structures->Render(ButtonVisual);
     };
 private:
-    Music mainMenuMusic;
+    //Music mainMenuMusic;
     Button *Quit, *Structures, *Documentation, *Credit;
 };

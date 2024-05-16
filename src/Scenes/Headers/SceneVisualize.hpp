@@ -6,13 +6,9 @@
 
 #include "Scenes.hpp"
 
-#include "Entity/header/Player.hpp"
-#include "Entity/header/Tile.hpp"
-
 #include "Util/SceneManager.hpp"
 #include "Util/GUIManager.hpp"
 #include "GUI/Button.hpp"
-#include "GUI/TextZone.hpp"
 
 #include "structures/avl/avl.hpp"
 #include "structures/bplus/bplus.hpp"
@@ -23,8 +19,8 @@ class Visualize : public Scene
 public:
     Visualize()
     {
-        mainMenuMusic = LoadMusicStream("rescources/sounds/music/NightShade.mp3");
-        PlayMusicStream(mainMenuMusic);
+        //mainMenuMusic = LoadMusicStream("rescources/sounds/music/NightShade.mp3");
+        //PlayMusicStream(mainMenuMusic);
 
         AVL = new Button("AVL", GetScreenWidth() / 2 - 150, GetScreenHeight() - 575);
         BTREE = new Button("BTree", GetScreenWidth() / 2 - 150, GetScreenHeight() - 450);
@@ -56,7 +52,7 @@ public:
     }
 
     void Render() override{
-        UpdateMusicStream(mainMenuMusic);
+        //UpdateMusicStream(mainMenuMusic);
         GUIManager::WriteText("Visualization", 0, 40, 45, 1);
 
         DrawText("By Rodrigo", 2, GetScreenHeight() - 22, 20, WHITE);
@@ -69,6 +65,6 @@ public:
         AVL->Render(ButtonAvl);
     };
 private:
-    Music mainMenuMusic;
+    //Music mainMenuMusic;
     Button *Return, *ExtendibleHashing, *BTREE, *AVL;
 };

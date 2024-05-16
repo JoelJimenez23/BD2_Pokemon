@@ -7,8 +7,8 @@ class Credits : public Scene
 public:
     Credits()
     {
-        mainMenuMusic = LoadMusicStream("rescources/sounds/music/Underclocked.mp3");
-        PlayMusicStream(mainMenuMusic);
+        //mainMenuMusic = LoadMusicStream("rescources/sounds/music/Underclocked.mp3");
+        //PlayMusicStream(mainMenuMusic);
 
         Rod = new Button("RODRIGO", GetScreenWidth() / 2 - 150, GetScreenHeight() - 575);
         Rog = new Button("ROGER", GetScreenWidth() / 2 - 150, GetScreenHeight() - 475);
@@ -27,7 +27,7 @@ public:
 
     void Render() override
     {
-        UpdateMusicStream(mainMenuMusic);
+        //UpdateMusicStream(mainMenuMusic);
         GUIManager::WriteText("Project's Members", 0, 40, 45, 1);
 
         DrawText("By Rodrigo", 2, GetScreenHeight() - 22, 20, WHITE);
@@ -43,6 +43,6 @@ public:
         ret->Render(retr);
     };
 private:
-    Music mainMenuMusic;
+    //Music mainMenuMusic;
     Button *Rod, *Ang, *Rog, *Joe, *Art, *ret;
 };

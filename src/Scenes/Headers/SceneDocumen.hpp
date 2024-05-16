@@ -6,13 +6,9 @@
 
 #include "Scenes.hpp"
 
-#include "Entity/header/Player.hpp"
-#include "Entity/header/Tile.hpp"
-
 #include "Util/SceneManager.hpp"
 #include "Util/GUIManager.hpp"
 #include "GUI/Button.hpp"
-#include "GUI/TextZone.hpp"
 
 class SceneDocumen : public Scene
 {
@@ -24,8 +20,8 @@ public:
         ExtendibleHashing = new Button("Extendible Hashing", GetScreenWidth() / 2 - 150, GetScreenHeight() - 325);
         Return = new Button("Return", GetScreenWidth() / 2 - 150, GetScreenHeight() - 200);
 
-        mainMenuMusic = LoadMusicStream("rescources/sounds/music/NightShade.mp3");
-        PlayMusicStream(mainMenuMusic);
+        //mainMenuMusic = LoadMusicStream("rescources/sounds/music/NightShade.mp3");
+        //PlayMusicStream(mainMenuMusic);
     }
 
     static void ButtonRet();
@@ -52,7 +48,7 @@ public:
     }
 
     void Render() override{
-        UpdateMusicStream(mainMenuMusic);
+        //UpdateMusicStream(mainMenuMusic);
         GUIManager::WriteText("Documentation", 0, 40, 45, 1);
 
         DrawText("By Rodrigo", 2, GetScreenHeight() - 22, 20, WHITE);
@@ -65,6 +61,6 @@ public:
         AVL->Render(ButtonAvl);
     };
 private:
-    Music mainMenuMusic;
+    //Music mainMenuMusic;
     Button *Return, *ExtendibleHashing, *BTREE, *AVL;
 };

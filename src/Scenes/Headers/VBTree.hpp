@@ -2,21 +2,17 @@
 
 #include "Scenes.hpp"
 
-#include "Entity/header/Player.hpp"
-#include "Entity/header/Tile.hpp"
-
 #include "Util/SceneManager.hpp"
 #include "Util/GUIManager.hpp"
 #include "GUI/Button.hpp"
-#include "GUI/TextZone.hpp"
 
 class VBTree : public Scene
 {
 public:
     VBTree()
     {
-        mainMenuMusic = LoadMusicStream("rescources/sounds/music/Underclocked.mp3");
-        PlayMusicStream(mainMenuMusic);
+        //mainMenuMusic = LoadMusicStream("rescources/sounds/music/Underclocked.mp3");
+        //PlayMusicStream(mainMenuMusic);
 
         insert = new Button("insert", 25, 100);
         find = new Button("find", 25, 200);
@@ -46,7 +42,7 @@ public:
     static void nothing(){}
 
     void Render() override {
-        UpdateMusicStream(mainMenuMusic);
+        //UpdateMusicStream(mainMenuMusic);
 
         int key = GetKeyPressed();
         char text[256] = "";
@@ -96,7 +92,7 @@ public:
         }
     }
 private:
-    Music mainMenuMusic;
+    //Music mainMenuMusic;
     Button *insert, *remove, *find, *range, *ret;
     //Estructura*
 };

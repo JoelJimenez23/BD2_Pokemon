@@ -2,13 +2,9 @@
 
 #include "Scenes.hpp"
 
-#include "Entity/header/Player.hpp"
-#include "Entity/header/Tile.hpp"
-
 #include "Util/SceneManager.hpp"
 #include "Util/GUIManager.hpp"
 #include "GUI/Button.hpp"
-#include "GUI/TextZone.hpp"
 
 #include "cstdlib"
 
@@ -22,8 +18,8 @@ public:
 
     VAVL()
     {
-        mainMenuMusic = LoadMusicStream("rescources/sounds/music/Underclocked.mp3");
-        PlayMusicStream(mainMenuMusic);
+        //mainMenuMusic = LoadMusicStream("rescources/sounds/music/Underclocked.mp3");
+        //PlayMusicStream(mainMenuMusic);
 
         insert = new Button("insert", 25, 100);
         find = new Button("find", 25, 200);
@@ -47,8 +43,8 @@ public:
     static void fi(){
         VAVL* Walk;
         Walk = new VAVL();
-        AVL.execute_query();
-        cout << "XDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD\n";
+        auto resp = AVL.execute_query();
+        for(auto& v : resp) cout << v.to_string() << " ";
         SceneManager::LoadScene(Walk);
     }
 
@@ -64,7 +60,7 @@ public:
 
     void Render() override
     {
-        UpdateMusicStream(mainMenuMusic);
+        //UpdateMusicStream(mainMenuMusic);
 
         int key = GetKeyPressed();
         char text[256] = "";
@@ -114,7 +110,7 @@ public:
         }
     };
 private:
-    Music mainMenuMusic;
+    //Music mainMenuMusic;
     Button *insert, *remove, *find, *range, *ret;
     //Estructura*
 };

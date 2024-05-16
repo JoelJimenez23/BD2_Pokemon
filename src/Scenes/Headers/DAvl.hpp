@@ -2,21 +2,17 @@
 
 #include "Scenes.hpp"
 
-#include "Entity/header/Player.hpp"
-#include "Entity/header/Tile.hpp"
-
 #include "Util/SceneManager.hpp"
 #include "Util/GUIManager.hpp"
 #include "GUI/Button.hpp"
-#include "GUI/TextZone.hpp"
 
 class DAVL : public Scene
 {
 public:
     DAVL()
     {
-        mainMenuMusic = LoadMusicStream("rescources/sounds/music/Underclocked.mp3");
-        PlayMusicStream(mainMenuMusic);
+        //mainMenuMusic = LoadMusicStream("rescources/sounds/music/Underclocked.mp3");
+        //PlayMusicStream(mainMenuMusic);
 
         RETURN = new Button("return", GetScreenWidth() - 300, GetScreenHeight() - 100);
 
@@ -44,7 +40,7 @@ public:
         RETURN->Render(retr);
     };
 private:
-    Music mainMenuMusic;
+    //Music mainMenuMusic;
     Button *RETURN;
     //Estructura*
 };
