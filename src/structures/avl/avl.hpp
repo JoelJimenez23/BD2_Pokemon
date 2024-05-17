@@ -4,16 +4,6 @@
 #include "node.hpp"
 #include <cstdlib>
 #include <functional>
-
-#define SEEK(file, pos) \
-    file.seekg(pos); \
-    file.seekp(pos);
-
-#define SEEKR(file, pos, relative) \
-    file.seekg(pos, relative); \
-    file.seekp(pos, relative);
-
-
 #include <iostream>
 
 template<typename KeyType
@@ -35,42 +25,42 @@ private:
 private: 
     void _insert(KeyType key, long data_pointer){
         long inserted_pos = insert(key, data_pointer, root);
-        this-> root = ( root == DISK_NULL ? inserted_pos : root );
+        this-> root = ( root == -1 ? inserted_pos : root );
     }
 
 
     long insert(KeyType key, long data_pointer, long rec_pos){
-        if (rec_pos == DISK_NULL) {
+        if (rec_pos == -1) {
             Node<KeyType> node(key, data_pointer);
-            SEEKR(file, 0, std::ios::end)
+            file.seekp(0, std::ios::end);
             long pos = file.tellg();
             file << node;
             return pos;
         }
         Node<KeyType> node;
-        SEEK(file, rec_pos)
+        file.seekp(rec_pos);
         file >> node;
         long inserted_pos;
 
         if (greater(node.key, key)) {
             inserted_pos = this->insert(key, data_pointer, node.left);
-            if ( node.left == DISK_NULL ){
+            if ( node.left == -1 ){
                 node.left = inserted_pos;
             }
         } else if (greater(key, node.key)) {
             inserted_pos = this->insert(key, data_pointer, node.right);
-            if ( node.right == DISK_NULL ){
+            if ( node.right == -1 ){
                 node.right = inserted_pos;
             }
 
         } else {
-            SEEKR(file, 0, std::ios::end)
+            file.seekp(0, std::ios::end);
             Node<KeyType> insert_node(key, data_pointer);
             insert_node.next = node.next;
             inserted_pos = file.tellg();
             file << insert_node;
 
-            SEEK(file, rec_pos)
+            file.seekp(rec_pos);
             node.next = inserted_pos;
             file << node;
 
@@ -91,14 +81,14 @@ private:
         long l = height(node.left);
         node.height = std::max(l,r) + 1;
 
-        SEEK(file, rec_pos)
+        file.seekp(rec_pos);
         file << node;
     }
 
     long height(long pos_node)
     {
-        if (pos_node == DISK_NULL){return -1;}
-        SEEK(file, pos_node)
+        if (pos_node == -1){return -1;}
+        file.seekp(pos_node);
         Node<KeyType> node;
         file >> node;
         return node.height;
@@ -106,11 +96,11 @@ private:
 
     void search(KeyType key, long position, std::vector<long>& pointers)
     {
-        if (position == DISK_NULL){
+        if (position == -1){
             return;
         }
         Node<KeyType> node;
-        SEEK(file, position)
+        file.seekg(position);
         file >> node;
         
         if (greater(node.key, key)) { 
@@ -126,8 +116,8 @@ private:
     void depth_search(long position, std::vector<long>& pointers)
     {
         Node<KeyType> node;
-        while (position != DISK_NULL) {
-            SEEK(file, position)
+        while (position != -1) {
+            file.seekg(position);
             file >> node;
             pointers.push_back(node.data_pointer);
             position = node.next;
@@ -146,7 +136,7 @@ private:
         long bf = balancing_factor(node);
         if (bf > 1) {
             Node<KeyType> left_node;
-            SEEK(file, node.left)
+            file.seekp(node.left);
             file >> left_node;
             if ( balancing_factor(left_node) <= -1 ){
                 rotate_left(left_node, node.left);
@@ -154,7 +144,7 @@ private:
             rotate_right(node, position);
         } else if (bf < -1) {
             Node<KeyType> right_node;
-            SEEK(file, node.right)
+            file.seekp(node.right);
             file >> right_node;
             if ( balancing_factor(right_node) >= 1 ){
                 rotate_right(right_node, node.right);
@@ -168,15 +158,15 @@ private:
         Node<KeyType> left_n;
         long left_p = node.left;
 
-        SEEK(file, left_p)
+        file.seekp(left_p);
         file >> left_n;
 
         node.left = left_n.right;
         left_n.right = left_p;
 
-        SEEK(file, left_p)
+        file.seekp(left_p);
         file << node;
-        SEEK(file, position)
+        file.seekp(position);
         file << left_n;
 
         update_height(node, left_p);
@@ -188,15 +178,15 @@ private:
         Node<KeyType> right_n;
         long right_p = node.right;
 
-        SEEK(file, right_p)
+        file.seekp(right_p);
         file >> right_n;
 
         node.right = right_n.left;
         right_n.left = right_p;
 
-        SEEK(file, right_p)
+        file.seekp(right_p);
         file << node;
-        SEEK(file, position)
+        file.seekp(position);
         file << right_n;
 
         update_height(node, right_p);
@@ -204,11 +194,11 @@ private:
     }
 
     void inorder(long position, std::vector<long>& pointers){
-        if (position == DISK_NULL){
+        if (position == -1){
             return;
         }
         Node<KeyType> node;
-        SEEK(file, position)
+        file.seekp(position);
         file >> node;
         
         inorder(node.left, pointers);
@@ -221,45 +211,45 @@ private:
 
     int remove(KeyType key, long position, std::vector<long>& pointers)
     {
-        if (position == DISK_NULL){
+        if (position == -1){
             file.close();
             throw std::runtime_error("Key not found");
         }
         Node<KeyType> node;
-        SEEK(file, position)
+        file.seekp(position);
         file >> node;
         int reallocate = NO_DETACH;
         if (greater(node.key, key)) { 
             reallocate = remove(key, node.left, pointers) ;
             if (reallocate == DETACH){
-                node.left = DISK_NULL;
+                node.left = -1;
             }
 
         } else if ( greater(key, node.key) ){
             reallocate = remove(key, node.right, pointers) ;
 
             if (reallocate == DETACH){
-                node.right = DISK_NULL;
+                node.right = -1;
             }
         } else {
-            if ( node.left == DISK_NULL && node.right == DISK_NULL ){
+            if ( node.left == -1 && node.right == -1 ){
                 if (pointers.empty()) depth_search(position, pointers);
                 return DETACH;
-            } else if ( node.left == DISK_NULL ){
+            } else if ( node.left == -1 ){
                 if (pointers.empty()) depth_search(position, pointers);
 
                 Node<KeyType> right_node;
-                SEEK(file, node.right)
+                file.seekp(node.right);
                 file >> right_node;
 
                 node = right_node;
                 node.right = right_node.right;
                 node.left = right_node.left;
 
-            } else if ( node.right == DISK_NULL ){
+            } else if ( node.right == -1 ){
                 if (pointers.empty()) depth_search(position, pointers);
                 Node<KeyType> left_node;
-                SEEK(file, node.left)
+                file.seekp(node.left);
                 file >> left_node;
 
                 node = left_node;
@@ -273,7 +263,7 @@ private:
                 reallocate = remove(successor.key, node.right, pointers);
                 node = successor;
                 if (reallocate == DETACH){
-                    node.right = DISK_NULL;
+                    node.right = -1;
                 }
             }
         }
@@ -285,10 +275,10 @@ private:
     Node<KeyType> get_successor(long position)
     {
         Node<KeyType> node;
-        SEEK(file, position)
+        file.seekp(position);
         file >> node;
-        while (node.left != DISK_NULL) {
-            SEEK(file, node.left)
+        while (node.left != -1) {
+            file.seekp(node.left);
             file >> node;
         }
         return node;
@@ -296,21 +286,21 @@ private:
 
     void _print(long position, const std::string& prefix = "", bool isLeft = true)
     {
-        if (position == DISK_NULL) {
+        if (position == -1) {
             return;
         }
 
         Node<KeyType> node;
-        SEEK(file, position)
+        file.seekp(position);
         file >> node;
 
         std::cout << prefix;
         std::cout << (isLeft ? "├── " : "└── ");
         std::cout << node.key;
         Node<KeyType> next_node = node;
-        while (next_node.next != DISK_NULL) {
+        while (next_node.next != -1) {
             std::cout << "*";
-            SEEK(file, next_node.next)
+            file.seekp(next_node.next);
             file >> next_node;
         } std::cout << std::endl;
 
@@ -320,11 +310,11 @@ private:
 
     void range_search(KeyType key1, KeyType key2, long position, std::vector<long>& pointers)
     {
-        if (position == DISK_NULL){
+        if (position == -1){
             return;
         }
         Node<KeyType> node;
-        SEEK(file, position)
+        file.seekp(position);
         file >> node;
         
         if (greater(node.key, key1)) { 
@@ -350,7 +340,7 @@ public:
         :heap_file_name{heap_file_name}
         , index{i}
         , greater{g}
-        , root{DISK_NULL}
+        , root{-1}
     {
         int p = heap_file_name.find_last_of(".");
         this->file_name = heap_file_name.substr(0,p) + "_" + attribute + ".avl";
@@ -358,7 +348,7 @@ public:
         file.close();
 
         if (*this) {
-            this->root = INITIAL_RECORD;
+            this->root = 0;
         }
     }
 
@@ -393,7 +383,7 @@ public:
 
         long seek{0};
         RecordType record;
-        root = DISK_NULL;
+        root = -1;
         while (heap_file.read((char*)&record, sizeof(RecordType))) {
             if ( !record.removed ) {
                 _insert(index(record), seek);
@@ -431,7 +421,7 @@ public:
     std::vector<RecordType> inorder()
     {
         std::vector<long> data_pointers;
-        file.open(file_name, std::ios::binary | std::ios::in);
+        file.open(file_name, std::ios::binary | std::ios::in | std::ios::out);
         inorder(root, data_pointers);
         file.close();
 
@@ -470,7 +460,7 @@ public:
         }
         heap_file.close();
         if (root_detached == DETACH){
-            root = DISK_NULL;
+            root = -1;
         }
     }
 

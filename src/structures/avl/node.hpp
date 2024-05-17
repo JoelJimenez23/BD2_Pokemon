@@ -1,32 +1,48 @@
 #ifndef NODE_HPP
 #define NODE_HPP
 
-#define DISK_NULL (-1)
-#define INITIAL_RECORD (0)
-#include "utils.hpp"
 #include <fstream>
 #include <sstream>
+#include <cstring>
 #define DETACH (-2)
 #define NO_DETACH (-3)
+
+
+// for different types of keys
+template<typename KeyType>
+void cp(KeyType &k1, KeyType &k2){
+    std::memcpy( (char*)&k1, (char*)&k2, sizeof(KeyType) );
+}
+
+template<typename KeyType>
+void cp(KeyType &k1, const KeyType &k2){
+    std::memcpy( (char*)&k1, (char*)&k2, sizeof(KeyType) );
+}
+
+template<typename KeyType>
+void cp(KeyType &k1, char*& k2){
+    std::memcpy( (char*)&k1, k2, sizeof(KeyType) );
+}
+
 
 template<typename KeyType>
 struct Node{
     KeyType key{};
-    long data_pointer {DISK_NULL};
+    long data_pointer {-1};
 
-    long right {DISK_NULL};
-    long left {DISK_NULL};
+    long right {-1};
+    long left {-1};
     long height {0};
-    long next {DISK_NULL};
+    long next {-1};
 
     explicit Node() = default;
 
     explicit Node(KeyType k, long physical_pos):data_pointer{physical_pos}{
-        fun::copy(key,k);
+        cp(key, k);
     }
 
     Node &operator=(const Node &other){
-        fun::copy(key,other.key);
+        cp(key, other.key);
         data_pointer = other.data_pointer;
         next = other.next;
         return *this;
